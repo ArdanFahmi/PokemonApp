@@ -1,19 +1,18 @@
 import { useEffect, useState } from "react";
 import {
   View,
-  Text,
   SafeAreaView,
-  StatusBar,
   FlatList,
   Dimensions,
   ActivityIndicator,
 } from "react-native";
 import { ListPokemon } from "../model/ResponseListPokemon";
 import CustomHeader from "../components/Header";
-import { getListPokemon, getPokemonById } from "../services/pokeApi";
+import { getListPokemon } from "../services/pokeApi";
 import CardItem from "../components/CardItem";
 import { navigate } from "../RootNavigation";
 import LoadingModal from "../components/LoadingModal";
+import AppStatusbar from "../components/StatusBar";
 
 export default function Home() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -38,7 +37,7 @@ export default function Home() {
       const res = await getListPokemon(offset, limit);
       if (res == null) {
         setPokemon([]);
-        setHasMore(false)
+        setHasMore(false);
       } else {
         const data: ListPokemon[] = res.results;
         data.forEach((item, idx) => {
@@ -63,7 +62,10 @@ export default function Home() {
   const renderTransaction = ({ item }: { item: ListPokemon }) => (
     <>
       <View className="my-2 mx-4 lg:my-4 lg:mx-6  flex-1 justify-center">
-        <CardItem onPress={() => null} pokemon={item} />
+        <CardItem
+          onPress={() => navigate("detailPokemon", { pokemon: item })}
+          pokemon={item}
+        />
       </View>
     </>
   );
@@ -81,7 +83,7 @@ export default function Home() {
 
   return (
     <SafeAreaView className="bg-white h-full">
-      <StatusBar /> 
+      <AppStatusbar />
       <LoadingModal isVisible={loading} />
       <CustomHeader title="PokeApp - Ardan Fahmi" backButton={false} />
       <FlatList

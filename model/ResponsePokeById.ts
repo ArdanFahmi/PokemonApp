@@ -24,6 +24,7 @@ export interface Ability {
   ability: Ability2
   is_hidden: boolean
   slot: number
+  short_description?: string
 }
 
 export interface Ability2 {

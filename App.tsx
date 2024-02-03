@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Compare from "./screens/Compare";
 import TabBar from "./components/TabBar";
 import { SafeAreaView } from "react-native";
+import DetailPokemon from "./screens/DetailPokemon";
 
 export default function App() {
   const Stack = createNativeStackNavigator<AppStackParamList>();
@@ -19,6 +20,7 @@ export default function App() {
       >
         <Stack.Screen name="bottom" component={HomeNavigation} />
         <Stack.Screen name="home" component={Home} />
+        <Stack.Screen name="detailPokemon" component={DetailPokemon} />
       </Stack.Navigator>
     </NavigationContainer>
   );
