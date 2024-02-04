@@ -59,7 +59,7 @@ export default function Home() {
     }
   };
 
-  const renderTransaction = ({ item }: { item: ListPokemon }) => (
+  const renderItem = ({ item }: { item: ListPokemon }) => (
     <>
       <View className="my-2 mx-4 lg:my-4 lg:mx-6  flex-1 justify-center">
         <CardItem
@@ -88,7 +88,7 @@ export default function Home() {
       <CustomHeader title="PokeApp - Ardan Fahmi" backButton={false} />
       <FlatList
         data={pokemon}
-        renderItem={renderTransaction}
+        renderItem={renderItem}
         keyExtractor={(item) => item.url}
         onEndReached={handleLoadMore}
         onEndReachedThreshold={0.1}
